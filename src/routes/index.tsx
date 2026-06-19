@@ -11,7 +11,7 @@ import planta55Asset from "@/assets/planta-55.jpg.asset.json";
 import { useState } from "react";
 
 const WHATSAPP_URL =
-  "https://wa.me/5511999999999?text=Ol%C3%A1!%20Quero%20a%20tabela%20de%20pre%C3%A7os%20e%20disponibilidade%20do%20empreendimento%20Vivakii%20na%20Freguesia%20do%20%C3%93.";
+  "https://wa.me/5511920983075?text=Ol%C3%A1!%20Quero%20a%20tabela%20de%20pre%C3%A7os%20e%20disponibilidade%20do%20empreendimento%20Vivakii%20na%20Freguesia%20do%20%C3%93.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -93,7 +93,7 @@ function LandingPage() {
     },
     {
       q: "Qual a previsão de entrega?",
-      a: "Fale com nosso consultor no WhatsApp para receber a tabela atualizada com prazo de entrega, plantas e disponibilidade.",
+      a: "Temos unidades a pronta entrega e lançamentos com entrega prevista entre 2026 e 2030. Fale com nosso consultor no WhatsApp para conferir as opções disponíveis.",
     },
   ];
 
