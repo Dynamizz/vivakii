@@ -1,16 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 import logoAsset from "@/assets/vivakii-logo.asset.json";
-import img1 from "@/assets/empreendimento-1.jpg";
-import img2 from "@/assets/empreendimento-2.jpg";
-import img3 from "@/assets/empreendimento-3.jpg";
-import img4 from "@/assets/empreendimento-4.jpg";
-import img5 from "@/assets/empreendimento-5.jpg";
-import planta1 from "@/assets/planta-1.jpg";
-import planta2 from "@/assets/planta-2.jpg";
+import fachadaAsset from "@/assets/fachada.jpg.asset.json";
+import piscinaAsset from "@/assets/piscina.jpg.asset.json";
+import grillAsset from "@/assets/grill.jpg.asset.json";
+import salaoAsset from "@/assets/salao-festas.jpg.asset.json";
+import pomarAsset from "@/assets/pomar.jpg.asset.json";
+import planta38Asset from "@/assets/planta-38.jpg.asset.json";
+import planta44Asset from "@/assets/planta-44.jpg.asset.json";
+import planta55Asset from "@/assets/planta-55.jpg.asset.json";
 import { useState } from "react";
 
 const WHATSAPP_URL =
-  "https://wa.me/5511999999999?text=Ol%C3%A1!%20Tenho%20interesse%20no%20empreendimento%20Vivakii%20na%20Freguesia%20do%20%C3%93.";
+  "https://wa.me/5511999999999?text=Ol%C3%A1!%20Quero%20a%20tabela%20de%20pre%C3%A7os%20e%20disponibilidade%20do%20empreendimento%20Vivakii%20na%20Freguesia%20do%20%C3%93.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -19,18 +20,18 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Seu novo apartamento na Freguesia do Ó. 2 dormitórios, vaga, lazer completo. Use FGTS e Minha Casa Minha Vida. Fale agora no WhatsApp.",
+          "Apartamentos de 2 dormitórios na Freguesia do Ó a partir de R$ 260.000. Use FGTS e Minha Casa Minha Vida. Solicite a tabela no WhatsApp.",
       },
       { property: "og:title", content: "Vivakii — Apartamentos na Freguesia do Ó" },
       {
         property: "og:description",
         content:
-          "Apartamentos com vaga, lazer e condições facilitadas na Freguesia do Ó, São Paulo.",
+          "Apartamentos de 2 dormitórios a partir de R$ 260.000 na Freguesia do Ó, São Paulo.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: img1 },
+      { property: "og:image", content: fachadaAsset.url },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: img1 },
+      { name: "twitter:image", content: fachadaAsset.url },
       { property: "og:url", content: "/" },
     ],
     links: [{ rel: "canonical", href: "/" }],
@@ -68,7 +69,13 @@ function CTAButton({
 }
 
 function LandingPage() {
-  const gallery = [img1, img2, img3, img4, img5];
+  const gallery = [
+    { src: fachadaAsset.url, alt: "Fachada do empreendimento Vivakii" },
+    { src: piscinaAsset.url, alt: "Piscina com espreguiçadeiras" },
+    { src: salaoAsset.url, alt: "Salão de festas" },
+    { src: grillAsset.url, alt: "Espaço gourmet com churrasqueira" },
+    { src: pomarAsset.url, alt: "Pomar e área verde" },
+  ];
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   const faqs = [
@@ -77,8 +84,8 @@ function LandingPage() {
       a: "Sim. O empreendimento aceita o uso do saldo do FGTS como entrada ou para amortização do financiamento, conforme as regras da Caixa Econômica Federal.",
     },
     {
-      q: "Tem vaga de garagem?",
-      a: "Sim, todas as unidades acompanham 1 vaga de garagem coberta.",
+      q: "Tem vaga?",
+      a: "Vaga opcional, conforme disponibilidade. Consulte nosso time no WhatsApp para verificar as unidades com vaga disponíveis.",
     },
     {
       q: "Como funciona a entrada?",
@@ -92,11 +99,11 @@ function LandingPage() {
 
   const highlights = [
     { title: "2 dormitórios", desc: "Plantas inteligentes e bem distribuídas." },
-    { title: "Vaga de garagem", desc: "1 vaga coberta por unidade." },
+    { title: "A partir de R$ 260.000", desc: "Condições especiais de lançamento." },
     { title: "Minha Casa Minha Vida", desc: "Condições especiais do programa." },
     { title: "Utilize FGTS", desc: "Use seu saldo na entrada ou parcelas." },
-    { title: "Transporte público", desc: "Próximo a ônibus e fácil acesso." },
-    { title: "Lazer completo", desc: "Piscina, salão de festas e mais." },
+    { title: "Vaga opcional", desc: "Conforme disponibilidade." },
+    { title: "Lazer completo", desc: "Piscina, salão de festas, grill e pomar." },
   ];
 
   return (
@@ -136,14 +143,15 @@ function LandingPage() {
               Lançamento • Freguesia do Ó
             </div>
             <h1 className="text-4xl font-bold leading-tight tracking-tight md:text-6xl">
-              Seu novo apartamento na{" "}
-              <span className="text-[#00C2A8]">Freguesia do Ó</span>
+              Apartamentos de{" "}
+              <span className="text-[#00C2A8]">2 dormitórios</span>
             </h1>
             <p className="mt-5 max-w-lg text-lg text-white/80 md:text-xl">
-              Apartamentos com vaga, lazer e condições facilitadas.
+              Na Freguesia do Ó, São Paulo. A partir de{" "}
+              <span className="font-semibold text-white">R$ 260.000</span>.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <CTAButton>Falar no WhatsApp</CTAButton>
+              <CTAButton>Solicitar tabela de preços</CTAButton>
               <span className="text-sm text-white/60">Resposta em minutos</span>
             </div>
             <div className="mt-10 grid grid-cols-3 gap-4 border-t border-white/10 pt-6 text-sm">
@@ -152,8 +160,8 @@ function LandingPage() {
                 <div className="text-white/70">Dormitórios</div>
               </div>
               <div>
-                <div className="text-2xl font-bold text-[#00C2A8]">1</div>
-                <div className="text-white/70">Vaga</div>
+                <div className="text-2xl font-bold text-[#00C2A8]">R$ 260k</div>
+                <div className="text-white/70">A partir de</div>
               </div>
               <div>
                 <div className="text-2xl font-bold text-[#00C2A8]">FGTS</div>
@@ -167,18 +175,18 @@ function LandingPage() {
               style={{ boxShadow: "var(--shadow-elegant)" }}
             >
               <img
-                src={img1}
+                src={fachadaAsset.url}
                 alt="Fachada do empreendimento Vivakii na Freguesia do Ó"
                 width={1280}
-                height={896}
+                height={1280}
                 className="h-full w-full object-cover"
               />
             </div>
             <div className="absolute -bottom-4 -left-4 hidden rounded-2xl bg-white p-4 text-foreground shadow-lg md:block">
               <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                Pronto para morar
+                Lançamento
               </div>
-              <div className="text-lg font-bold text-[#12344D]">Tabela exclusiva</div>
+              <div className="text-lg font-bold text-[#12344D]">A partir de R$ 260.000</div>
             </div>
           </div>
         </div>
@@ -228,24 +236,24 @@ function LandingPage() {
             <h2 className="text-3xl font-bold tracking-tight text-[#12344D] md:text-4xl">
               Conheça o empreendimento
             </h2>
-            <p className="mt-3 text-muted-foreground">Fotos reais e imagens ilustrativas.</p>
+            <p className="mt-3 text-muted-foreground">Imagens ilustrativas do projeto.</p>
           </div>
           <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
             <div className="col-span-2 row-span-2 overflow-hidden rounded-2xl">
               <img
-                src={gallery[0]}
-                alt="Fachada"
+                src={gallery[0].src}
+                alt={gallery[0].alt}
                 loading="lazy"
                 width={1280}
-                height={896}
+                height={1280}
                 className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
               />
             </div>
-            {gallery.slice(1).map((src, i) => (
+            {gallery.slice(1).map((g, i) => (
               <div key={i} className="overflow-hidden rounded-2xl">
                 <img
-                  src={src}
-                  alt={`Foto ${i + 2} do empreendimento`}
+                  src={g.src}
+                  alt={g.alt}
                   loading="lazy"
                   width={1280}
                   height={896}
@@ -266,15 +274,14 @@ function LandingPage() {
                 Localização privilegiada
               </h2>
               <p className="mt-3 text-muted-foreground">
-                Freguesia do Ó, zona norte de São Paulo. Próximo ao transporte público,
-                comércio, escolas e parques.
+                Freguesia do Ó, zona norte de São Paulo. Tudo perto de você.
               </p>
               <ul className="mt-6 space-y-3 text-sm">
                 {[
-                  "Acesso fácil à Marginal Tietê",
+                  "3 min da Estação Freguesia do Ó",
                   "Próximo ao Terminal Pirituba",
-                  "Comércio e serviços a poucos passos",
-                  "Escolas, hospitais e parques no entorno",
+                  "Em frente ao Assaí",
+                  "Fácil acesso às Marginais",
                 ].map((t) => (
                   <li key={t} className="flex items-start gap-3">
                     <span className="mt-1 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#00C2A8]/15 text-[#00C2A8]">
@@ -317,16 +324,20 @@ function LandingPage() {
               Opções de planta pensadas para o seu dia a dia.
             </p>
           </div>
-          <div className="grid gap-6 md:grid-cols-2">
-            {[planta1, planta2].map((src, i) => (
+          <div className="grid gap-6 md:grid-cols-3">
+            {[
+              { src: planta38Asset.url, label: "38 m²", desc: "2 dormitórios" },
+              { src: planta44Asset.url, label: "44 m²", desc: "2 dormitórios" },
+              { src: planta55Asset.url, label: "55 m²", desc: "3 dormitórios" },
+            ].map((p) => (
               <div
-                key={i}
+                key={p.label}
                 className="overflow-hidden rounded-2xl border border-border bg-white p-4"
                 style={{ boxShadow: "var(--shadow-soft)" }}
               >
                 <img
-                  src={src}
-                  alt={`Planta opção ${i + 1}`}
+                  src={p.src}
+                  alt={`Planta ${p.label}`}
                   loading="lazy"
                   width={1024}
                   height={1024}
@@ -334,9 +345,9 @@ function LandingPage() {
                 />
                 <div className="mt-4 text-center">
                   <div className="text-sm font-semibold uppercase tracking-wider text-[#00C2A8]">
-                    Opção {i + 1}
+                    {p.label}
                   </div>
-                  <div className="text-lg font-bold text-[#12344D]">2 dormitórios</div>
+                  <div className="text-lg font-bold text-[#12344D]">{p.desc}</div>
                 </div>
               </div>
             ))}
@@ -387,13 +398,13 @@ function LandingPage() {
       <section className="relative overflow-hidden py-20 text-white" style={{ background: "var(--gradient-hero)" }}>
         <div className="mx-auto max-w-3xl px-4 text-center">
           <h2 className="text-3xl font-bold tracking-tight md:text-5xl">
-            Solicite tabela de preços e disponibilidade
+            Solicite tabela atualizada e disponibilidade
           </h2>
           <p className="mt-4 text-white/80 md:text-lg">
             Atendimento humano e rápido, direto pelo WhatsApp.
           </p>
           <div className="mt-8 flex justify-center">
-            <CTAButton>Falar no WhatsApp</CTAButton>
+            <CTAButton>Receber tabela de preços</CTAButton>
           </div>
         </div>
       </section>
