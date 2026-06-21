@@ -1,37 +1,29 @@
 import { createFileRoute } from "@tanstack/react-router";
-import logoAsset from "@/assets/vivakii-logo.asset.json";
-import fachadaAsset from "@/assets/fachada.jpg.asset.json";
-import piscinaAsset from "@/assets/piscina.jpg.asset.json";
-import grillAsset from "@/assets/grill.jpg.asset.json";
-import salaoAsset from "@/assets/salao-festas.jpg.asset.json";
-import pomarAsset from "@/assets/pomar.jpg.asset.json";
-import planta38Asset from "@/assets/planta-38.jpg.asset.json";
-import planta44Asset from "@/assets/planta-44.jpg.asset.json";
-import planta55Asset from "@/assets/planta-55.jpg.asset.json";
 import { useState } from "react";
+import { propertyData, getWhatsAppUrl } from "@/data/propertyData";
+import { LeadForm } from "@/components/LeadForm";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
-const WHATSAPP_URL =
-  "https://wa.me/5511920983075?text=Ol%C3%A1!%20Quero%20a%20tabela%20de%20pre%C3%A7os%20e%20disponibilidade%20do%20empreendimento%20Vivakii%20na%20Freguesia%20do%20%C3%93.";
+const WHATSAPP_URL = getWhatsAppUrl();
+const data = propertyData;
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Vivakii — Apartamentos na Freguesia do Ó | São Paulo" },
-      {
-        name: "description",
-        content:
-          "Apartamentos de 2 dormitórios na Freguesia do Ó a partir de R$ 260.000. Use FGTS e Minha Casa Minha Vida. Solicite a tabela no WhatsApp.",
-      },
-      { property: "og:title", content: "Vivakii — Apartamentos na Freguesia do Ó" },
-      {
-        property: "og:description",
-        content:
-          "Apartamentos de 2 dormitórios a partir de R$ 260.000 na Freguesia do Ó, São Paulo.",
-      },
+      { title: data.seo.title },
+      { name: "description", content: data.seo.description },
+      { property: "og:title", content: data.seo.ogTitle },
+      { property: "og:description", content: data.seo.ogDescription },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: fachadaAsset.url },
+      { property: "og:image", content: data.hero.coverImage.src },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: fachadaAsset.url },
+      { name: "twitter:image", content: data.hero.coverImage.src },
       { property: "og:url", content: "/" },
     ],
     links: [{ rel: "canonical", href: "/" }],
@@ -68,52 +60,47 @@ function CTAButton({
   );
 }
 
+function Tour3DDialog() {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <button className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-[#12344D] bg-white px-6 py-3 text-base font-semibold text-[#12344D] transition-all hover:bg-[#12344D] hover:text-white">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="h-5 w-5">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3 7l9-4 9 4-9 4-9-4zM3 7v10l9 4 9-4V7" />
+          </svg>
+          Ver Tour Virtual 3D
+        </button>
+      </DialogTrigger>
+      <DialogContent className="max-w-4xl">
+        <DialogHeader>
+          <DialogTitle className="text-[#12344D]">Tour Virtual 3D</DialogTitle>
+        </DialogHeader>
+        <div className="aspect-video w-full overflow-hidden rounded-lg bg-secondary">
+          {/* 🎥 Plug Matterport / Kuula / 360 viewer URL via propertyData.plantas.tour3dUrl */}
+          <iframe
+            src={data.plantas.tour3dUrl}
+            title="Tour Virtual 3D"
+            className="h-full w-full"
+            allow="xr-spatial-tracking; gyroscope; accelerometer; fullscreen"
+            allowFullScreen
+          />
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
 function LandingPage() {
-  const gallery = [
-    { src: fachadaAsset.url, alt: "Fachada do empreendimento Vivakii" },
-    { src: piscinaAsset.url, alt: "Piscina com espreguiçadeiras" },
-    { src: salaoAsset.url, alt: "Salão de festas" },
-    { src: grillAsset.url, alt: "Espaço gourmet com churrasqueira" },
-    { src: pomarAsset.url, alt: "Pomar e área verde" },
-  ];
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
-  const faqs = [
-    {
-      q: "Posso usar FGTS?",
-      a: "Sim. O empreendimento aceita o uso do saldo do FGTS como entrada ou para amortização do financiamento, conforme as regras da Caixa Econômica Federal.",
-    },
-    {
-      q: "Tem vaga?",
-      a: "Vaga opcional, conforme disponibilidade. Consulte nosso time no WhatsApp para verificar as unidades com vaga disponíveis.",
-    },
-    {
-      q: "Como funciona a entrada?",
-      a: "Trabalhamos com condições facilitadas: entrada parcelada direto com a construtora, possibilidade de uso do FGTS e financiamento pela Caixa via Minha Casa Minha Vida.",
-    },
-    {
-      q: "Qual a previsão de entrega?",
-      a: "Temos unidades a pronta entrega e lançamentos com entrega prevista entre 2026 e 2030. Fale com nosso consultor no WhatsApp para conferir as opções disponíveis.",
-    },
-  ];
-
-  const highlights = [
-    { title: "2 dormitórios", desc: "Plantas inteligentes e bem distribuídas." },
-    { title: "A partir de R$ 260.000", desc: "Condições especiais de lançamento." },
-    { title: "Minha Casa Minha Vida", desc: "Condições especiais do programa." },
-    { title: "Utilize FGTS", desc: "Use seu saldo na entrada ou parcelas." },
-    { title: "Vaga opcional", desc: "Conforme disponibilidade." },
-    { title: "Lazer completo", desc: "Piscina, salão de festas, grill e pomar." },
-  ];
-
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground pb-16 md:pb-0">
       {/* Header */}
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <img
-            src={logoAsset.url}
-            alt="Vivakii"
+            src={data.brand.logoUrl}
+            alt={data.brand.name}
             className="h-8 w-auto md:h-10"
             width={160}
             height={40}
@@ -140,33 +127,27 @@ function LandingPage() {
           <div>
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium uppercase tracking-wider text-[#7FE7D8] backdrop-blur">
               <span className="h-2 w-2 rounded-full bg-[#00C2A8]" />
-              Lançamento • Freguesia do Ó
+              {data.hero.badge}
             </div>
             <h1 className="text-4xl font-bold leading-tight tracking-tight md:text-6xl">
-              Apartamentos de{" "}
-              <span className="text-[#00C2A8]">2 dormitórios</span>
+              {data.hero.titlePrefix}{" "}
+              <span className="text-[#00C2A8]">{data.hero.titleHighlight}</span>
             </h1>
             <p className="mt-5 max-w-lg text-lg text-white/80 md:text-xl">
-              Na Freguesia do Ó, São Paulo. A partir de{" "}
-              <span className="font-semibold text-white">R$ 260.000</span>.
+              {data.hero.subtitle}{" "}
+              <span className="font-semibold text-white">{data.hero.priceFrom}</span>.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <CTAButton>Solicitar tabela de preços</CTAButton>
-              <span className="text-sm text-white/60">Resposta em minutos</span>
+              <CTAButton>{data.hero.ctaPrimary}</CTAButton>
+              <span className="text-sm text-white/60">{data.hero.ctaSecondary}</span>
             </div>
             <div className="mt-10 grid grid-cols-3 gap-4 border-t border-white/10 pt-6 text-sm">
-              <div>
-                <div className="text-2xl font-bold text-[#00C2A8]">2</div>
-                <div className="text-white/70">Dormitórios</div>
-              </div>
-              <div>
-                <div className="text-2xl font-bold text-[#00C2A8]">R$ 260k</div>
-                <div className="text-white/70">A partir de</div>
-              </div>
-              <div>
-                <div className="text-2xl font-bold text-[#00C2A8]">FGTS</div>
-                <div className="text-white/70">Aceito</div>
-              </div>
+              {data.hero.stats.map((s) => (
+                <div key={s.label}>
+                  <div className="text-2xl font-bold text-[#00C2A8]">{s.value}</div>
+                  <div className="text-white/70">{s.label}</div>
+                </div>
+              ))}
             </div>
           </div>
           <div className="relative">
@@ -175,8 +156,8 @@ function LandingPage() {
               style={{ boxShadow: "var(--shadow-elegant)" }}
             >
               <img
-                src={fachadaAsset.url}
-                alt="Fachada do empreendimento Vivakii na Freguesia do Ó"
+                src={data.hero.coverImage.src}
+                alt={data.hero.coverImage.alt}
                 width={1280}
                 height={1280}
                 className="h-full w-full object-cover"
@@ -184,9 +165,9 @@ function LandingPage() {
             </div>
             <div className="absolute -bottom-4 -left-4 hidden rounded-2xl bg-white p-4 text-foreground shadow-lg md:block">
               <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                Lançamento
+                {data.status}
               </div>
-              <div className="text-lg font-bold text-[#12344D]">A partir de R$ 260.000</div>
+              <div className="text-lg font-bold text-[#12344D]">A partir de {data.hero.priceFrom}</div>
             </div>
           </div>
         </div>
@@ -197,27 +178,19 @@ function LandingPage() {
         <div className="mx-auto max-w-6xl px-4">
           <div className="mb-10 text-center">
             <h2 className="text-3xl font-bold tracking-tight text-[#12344D] md:text-4xl">
-              Tudo o que você precisa
+              {data.highlights.title}
             </h2>
-            <p className="mt-3 text-muted-foreground">
-              Conforto, praticidade e condições facilitadas em um só lugar.
-            </p>
+            <p className="mt-3 text-muted-foreground">{data.highlights.subtitle}</p>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {highlights.map((h) => (
+            {data.highlights.items.map((h) => (
               <div
                 key={h.title}
                 className="group rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-[#00C2A8]"
                 style={{ boxShadow: "var(--shadow-soft)" }}
               >
                 <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#00C2A8]/10 text-[#00C2A8]">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    className="h-5 w-5"
-                  >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="h-5 w-5">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
@@ -234,22 +207,22 @@ function LandingPage() {
         <div className="mx-auto max-w-6xl px-4">
           <div className="mb-10">
             <h2 className="text-3xl font-bold tracking-tight text-[#12344D] md:text-4xl">
-              Conheça o empreendimento
+              {data.gallery.title}
             </h2>
-            <p className="mt-3 text-muted-foreground">Imagens ilustrativas do projeto.</p>
+            <p className="mt-3 text-muted-foreground">{data.gallery.subtitle}</p>
           </div>
           <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
             <div className="col-span-2 row-span-2 overflow-hidden rounded-2xl">
               <img
-                src={gallery[0].src}
-                alt={gallery[0].alt}
+                src={data.gallery.images[0].src}
+                alt={data.gallery.images[0].alt}
                 loading="lazy"
                 width={1280}
                 height={1280}
                 className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
               />
             </div>
-            {gallery.slice(1).map((g, i) => (
+            {data.gallery.images.slice(1).map((g, i) => (
               <div key={i} className="overflow-hidden rounded-2xl">
                 <img
                   src={g.src}
@@ -271,18 +244,11 @@ function LandingPage() {
           <div className="grid gap-8 md:grid-cols-2 md:items-center">
             <div>
               <h2 className="text-3xl font-bold tracking-tight text-[#12344D] md:text-4xl">
-                Localização privilegiada
+                {data.location.title}
               </h2>
-              <p className="mt-3 text-muted-foreground">
-                Freguesia do Ó, zona norte de São Paulo. Tudo perto de você.
-              </p>
+              <p className="mt-3 text-muted-foreground">{data.location.subtitle}</p>
               <ul className="mt-6 space-y-3 text-sm">
-                {[
-                  "3 min da Estação Freguesia do Ó",
-                  "Próximo ao Terminal Pirituba",
-                  "Em frente ao Assaí",
-                  "Fácil acesso às Marginais",
-                ].map((t) => (
+                {data.location.items.map((t) => (
                   <li key={t} className="flex items-start gap-3">
                     <span className="mt-1 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#00C2A8]/15 text-[#00C2A8]">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="h-3 w-3">
@@ -302,8 +268,8 @@ function LandingPage() {
               style={{ boxShadow: "var(--shadow-soft)" }}
             >
               <iframe
-                title="Mapa Freguesia do Ó"
-                src="https://www.google.com/maps?q=Freguesia%20do%20%C3%93%2C%20S%C3%A3o%20Paulo&output=embed"
+                title="Mapa"
+                src={data.location.mapEmbedUrl}
                 className="h-[360px] w-full md:h-[440px]"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -316,20 +282,17 @@ function LandingPage() {
       {/* Plantas */}
       <section className="py-16 md:py-20">
         <div className="mx-auto max-w-6xl px-4">
-          <div className="mb-10">
-            <h2 className="text-3xl font-bold tracking-tight text-[#12344D] md:text-4xl">
-              Plantas
-            </h2>
-            <p className="mt-3 text-muted-foreground">
-              Opções de planta pensadas para o seu dia a dia.
-            </p>
+          <div className="mb-10 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
+            <div>
+              <h2 className="text-3xl font-bold tracking-tight text-[#12344D] md:text-4xl">
+                {data.plantas.title}
+              </h2>
+              <p className="mt-3 text-muted-foreground">{data.plantas.subtitle}</p>
+            </div>
+            <Tour3DDialog />
           </div>
           <div className="grid gap-6 md:grid-cols-3">
-            {[
-              { src: planta38Asset.url, label: "38 m²", desc: "2 dormitórios" },
-              { src: planta44Asset.url, label: "44 m²", desc: "2 dormitórios" },
-              { src: planta55Asset.url, label: "55 m²", desc: "3 dormitórios" },
-            ].map((p) => (
+            {data.plantas.items.map((p) => (
               <div
                 key={p.label}
                 className="overflow-hidden rounded-2xl border border-border bg-white p-4"
@@ -360,11 +323,11 @@ function LandingPage() {
         <div className="mx-auto max-w-3xl px-4">
           <div className="mb-10 text-center">
             <h2 className="text-3xl font-bold tracking-tight text-[#12344D] md:text-4xl">
-              Perguntas frequentes
+              {data.faq.title}
             </h2>
           </div>
           <div className="space-y-3">
-            {faqs.map((f, i) => {
+            {data.faq.items.map((f, i) => {
               const isOpen = openFaq === i;
               return (
                 <div
@@ -394,17 +357,25 @@ function LandingPage() {
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="relative overflow-hidden py-20 text-white" style={{ background: "var(--gradient-hero)" }}>
-        <div className="mx-auto max-w-3xl px-4 text-center">
-          <h2 className="text-3xl font-bold tracking-tight md:text-5xl">
-            Solicite tabela atualizada e disponibilidade
-          </h2>
-          <p className="mt-4 text-white/80 md:text-lg">
-            Atendimento humano e rápido, direto pelo WhatsApp.
-          </p>
-          <div className="mt-8 flex justify-center">
-            <CTAButton>Receber tabela de preços</CTAButton>
+      {/* Final CTA + Lead Form */}
+      <section
+        id="contato"
+        className="relative overflow-hidden py-20 text-white"
+        style={{ background: "var(--gradient-hero)" }}
+      >
+        <div className="mx-auto grid max-w-5xl gap-10 px-4 md:grid-cols-2 md:items-center">
+          <div className="text-center md:text-left">
+            <h2 className="text-3xl font-bold tracking-tight md:text-5xl">
+              {data.finalCta.title}
+            </h2>
+            <p className="mt-4 text-white/80 md:text-lg">{data.finalCta.subtitle}</p>
+            <div className="mt-8 flex justify-center md:justify-start">
+              <CTAButton>{data.finalCta.button}</CTAButton>
+            </div>
+          </div>
+          <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur">
+            <h3 className="mb-4 text-xl font-bold">Deixe seus dados</h3>
+            <LeadForm />
           </div>
         </div>
       </section>
@@ -413,21 +384,32 @@ function LandingPage() {
       <footer className="border-t border-border bg-background py-8">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 text-sm text-muted-foreground md:flex-row">
           <div className="flex items-center gap-3">
-            <img src={logoAsset.url} alt="Vivakii" className="h-7 w-auto" />
+            <img src={data.brand.logoUrl} alt={data.brand.name} className="h-7 w-auto" />
           </div>
-          <div>© {new Date().getFullYear()} Vivakii. Imagens meramente ilustrativas.</div>
+          <div>© {new Date().getFullYear()} {data.brand.name}. Imagens meramente ilustrativas.</div>
         </div>
       </footer>
 
-      {/* Floating WhatsApp */}
+      {/* Floating WhatsApp (desktop) */}
       <a
         href={WHATSAPP_URL}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Falar no WhatsApp"
-        className="fixed bottom-5 right-5 z-50 inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_10px_30px_-5px_rgba(37,211,102,0.6)] transition-transform hover:scale-110 md:h-16 md:w-16"
+        className="fixed bottom-5 right-5 z-50 hidden h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_10px_30px_-5px_rgba(37,211,102,0.6)] transition-transform hover:scale-110 md:inline-flex md:h-16 md:w-16"
       >
         <WhatsAppIcon className="h-7 w-7 md:h-8 md:w-8" />
+      </a>
+
+      {/* Sticky mobile CTA */}
+      <a
+        href={WHATSAPP_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-0 left-0 z-50 flex w-full items-center justify-center gap-3 bg-[#25D366] px-4 py-4 text-base font-semibold text-white shadow-[0_-8px_24px_-8px_rgba(0,0,0,0.3)] md:hidden"
+      >
+        <WhatsAppIcon className="h-5 w-5" />
+        Falar com Corretor
       </a>
     </div>
   );
