@@ -28,7 +28,9 @@ export interface PropertyData {
     stats: { value: string; label: string }[];
   };
   highlights: { title: string; subtitle: string; items: Highlight[] };
-  gallery: { title: string; subtitle: string; images: GalleryImage[] };
+  affordability: { eyebrow: string; title: string; subtitle: string; items: Highlight[] };
+  bureaucracy: { eyebrow: string; title: string; body: string; bullets: string[] };
+  gallery: { eyebrow: string; title: string; subtitle: string; images: GalleryImage[] };
   location: {
     title: string;
     subtitle: string;
@@ -37,7 +39,7 @@ export interface PropertyData {
   };
   plantas: { title: string; subtitle: string; items: Planta[]; tour3dUrl: string };
   faq: { title: string; items: Faq[] };
-  finalCta: { title: string; subtitle: string; button: string };
+  finalCta: { title: string; subtitle: string; button: string; formTitle: string; successMessage: string };
   whatsapp: { phone: string; message: string };
   webhookUrl: string;
   seo: {
@@ -86,9 +88,40 @@ export const propertyData: PropertyData = {
       { title: "Lazer completo", desc: "Piscina, salão de festas, grill e pomar." },
     ],
   },
+  affordability: {
+    eyebrow: "Cabe no seu bolso",
+    title: "O sonho do apartamento próprio com condições que cabem no seu bolso",
+    subtitle: "Sem precisar de uma entrada gigantesca para começar.",
+    items: [
+      {
+        title: "Entrada Facilitada",
+        desc: "Parcelamento flexível direto com a construtora. Você organiza a entrada no seu ritmo, sem aperto no orçamento.",
+      },
+      {
+        title: "Uso do FGTS",
+        desc: "Seu saldo de FGTS pode ser usado na entrada, na amortização ou para reduzir as parcelas do financiamento.",
+      },
+      {
+        title: "Juros Baixos do Minha Casa Minha Vida",
+        desc: "Acesso às menores taxas do mercado pelo programa MCMV, com subsídios e condições especiais da Caixa.",
+      },
+    ],
+  },
+  bureaucracy: {
+    eyebrow: "Sem burocracia",
+    title: "Aprovação de Crédito sem Complicações",
+    body: "Fazemos toda a assessoria de crédito gratuitamente, inclusive para Autônomos, PJs e Profissionais Liberais. Sem burocracia, sem fila e sem complicação — você cuida do seu sonho, a gente cuida do papel.",
+    bullets: [
+      "Análise gratuita de perfil",
+      "Atende autônomos, PJ e liberais",
+      "Documentação simplificada",
+    ],
+  },
   gallery: {
-    title: "Conheça o empreendimento",
-    subtitle: "Imagens ilustrativas do projeto.",
+    eyebrow: "Lazer completo",
+    title: "Sua casa não termina na porta do apartamento",
+    subtitle:
+      "A área de lazer foi pensada para você viver mais — piscina, salão de festas, espaço gourmet e pomar ampliam (e muito) o seu metro quadrado.",
     images: [
       { src: fachadaAsset.url, alt: "Fachada do empreendimento Vivakii" },
       { src: piscinaAsset.url, alt: "Piscina com espreguiçadeiras" },
@@ -137,14 +170,17 @@ export const propertyData: PropertyData = {
       },
       {
         q: "Qual a previsão de entrega?",
-        a: "Temos unidades a pronta entrega e lançamentos com entrega prevista entre 2026 e 2030. Fale com nosso consultor no WhatsApp para conferir as opções disponíveis.",
+        a: "Temos unidades a pronta entrega e lançamentos com entrega prevista entre 2026 e 2030. Todo financiamento é feito com Garantia da Caixa Econômica Federal — segurança total e sem surpresas no seu planejamento.",
       },
     ],
   },
   finalCta: {
-    title: "Solicite tabela atualizada e disponibilidade",
-    subtitle: "Atendimento humano e rápido, direto pelo WhatsApp.",
+    title: "Solicite uma Simulação de Financiamento Personalizada",
+    subtitle: "Atendimento humano e rápido, direto pelo WhatsApp. Receba sua simulação em minutos.",
     button: "Receber tabela de preços",
+    formTitle: "Solicite uma Simulação de Financiamento Personalizada",
+    successMessage:
+      "Olá! Acabei de solicitar uma simulação de financiamento personalizada do Vivakii. Pode me enviar a tabela e disponibilidade?",
   },
   whatsapp: {
     phone: "5511920983075",

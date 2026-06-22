@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { propertyData, getWhatsAppUrl } from "@/data/propertyData";
 import { LeadForm } from "@/components/LeadForm";
+import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
 import {
   Dialog,
   DialogContent,
@@ -173,46 +174,92 @@ function LandingPage() {
         </div>
       </section>
 
-      {/* Highlights */}
-      <section className="border-b border-border bg-secondary/40 py-16 md:py-20">
+      {/* Step 2 — Affordability narrative */}
+      <section className="border-b border-border bg-secondary/40 py-16 md:py-24">
         <div className="mx-auto max-w-6xl px-4">
-          <div className="mb-10 text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-[#12344D] md:text-4xl">
-              {data.highlights.title}
+          <Reveal className="mx-auto mb-12 max-w-3xl text-center">
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[#00C2A8]/30 bg-[#00C2A8]/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[#0a7d6e]">
+              {data.affordability.eyebrow}
+            </div>
+            <h2 className="text-3xl font-bold leading-tight tracking-tight text-[#12344D] md:text-4xl">
+              {data.affordability.title}
             </h2>
-            <p className="mt-3 text-muted-foreground">{data.highlights.subtitle}</p>
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {data.highlights.items.map((h) => (
-              <div
-                key={h.title}
-                className="group rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-[#00C2A8]"
-                style={{ boxShadow: "var(--shadow-soft)" }}
-              >
-                <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#00C2A8]/10 text-[#00C2A8]">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="h-5 w-5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
+            <p className="mt-3 text-muted-foreground">{data.affordability.subtitle}</p>
+          </Reveal>
+          <StaggerGroup className="grid gap-5 md:grid-cols-3" stagger={0.15}>
+            {data.affordability.items.map((h) => (
+              <StaggerItem key={h.title}>
+                <div
+                  className="group h-full rounded-2xl border border-border bg-card p-7 transition-all duration-300 hover:-translate-y-1.5 hover:border-[#00C2A8] hover:shadow-[0_20px_50px_-20px_rgba(0,194,168,0.5)]"
+                  style={{ boxShadow: "var(--shadow-soft)" }}
+                >
+                  <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#00C2A8]/10 text-[#00C2A8] transition-transform group-hover:scale-110">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="h-6 w-6">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg font-semibold text-[#12344D]">{h.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{h.desc}</p>
                 </div>
-                <h3 className="text-lg font-semibold text-[#12344D]">{h.title}</h3>
-                <p className="mt-1 text-sm text-muted-foreground">{h.desc}</p>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGroup>
         </div>
       </section>
 
-      {/* Gallery */}
-      <section className="py-16 md:py-20">
+      {/* Step 3 — Bureaucracy objection */}
+      <section className="relative overflow-hidden py-16 text-white md:py-20" style={{ background: "var(--gradient-hero)" }}>
+        <div
+          className="absolute inset-0 opacity-20"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 80% 30%, rgba(0,194,168,0.35), transparent 45%)",
+          }}
+        />
+        <div className="relative mx-auto grid max-w-6xl gap-10 px-4 md:grid-cols-2 md:items-center">
+          <Reveal>
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[#7FE7D8]">
+              {data.bureaucracy.eyebrow}
+            </div>
+            <h2 className="text-3xl font-bold leading-tight tracking-tight md:text-4xl">
+              {data.bureaucracy.title}
+            </h2>
+            <p className="mt-4 text-white/85 md:text-lg">{data.bureaucracy.body}</p>
+            <div className="mt-8">
+              <CTAButton>Falar com nosso especialista</CTAButton>
+            </div>
+          </Reveal>
+          <StaggerGroup className="space-y-3" stagger={0.1}>
+            {data.bureaucracy.bullets.map((b) => (
+              <StaggerItem key={b}>
+                <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur transition-all hover:-translate-y-1 hover:border-[#00C2A8]/40 hover:bg-white/10">
+                  <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#00C2A8] text-[#12344D]">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="h-5 w-5">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </span>
+                  <span className="font-medium">{b}</span>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
+        </div>
+      </section>
+
+      {/* Step 4 — Gallery / Lazer */}
+      <section className="py-16 md:py-24">
         <div className="mx-auto max-w-6xl px-4">
-          <div className="mb-10">
+          <Reveal className="mb-10 max-w-3xl">
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[#00C2A8]/30 bg-[#00C2A8]/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[#0a7d6e]">
+              {data.gallery.eyebrow}
+            </div>
             <h2 className="text-3xl font-bold tracking-tight text-[#12344D] md:text-4xl">
               {data.gallery.title}
             </h2>
             <p className="mt-3 text-muted-foreground">{data.gallery.subtitle}</p>
-          </div>
-          <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
-            <div className="col-span-2 row-span-2 overflow-hidden rounded-2xl">
+          </Reveal>
+          <StaggerGroup className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4" stagger={0.08}>
+            <StaggerItem className="col-span-2 row-span-2 overflow-hidden rounded-2xl">
               <img
                 src={data.gallery.images[0].src}
                 alt={data.gallery.images[0].alt}
@@ -221,9 +268,9 @@ function LandingPage() {
                 height={1280}
                 className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
               />
-            </div>
+            </StaggerItem>
             {data.gallery.images.slice(1).map((g, i) => (
-              <div key={i} className="overflow-hidden rounded-2xl">
+              <StaggerItem key={i} className="overflow-hidden rounded-2xl">
                 <img
                   src={g.src}
                   alt={g.alt}
@@ -232,9 +279,9 @@ function LandingPage() {
                   height={896}
                   className="h-48 w-full object-cover transition-transform duration-700 hover:scale-105 md:h-full"
                 />
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGroup>
         </div>
       </section>
 
@@ -242,7 +289,7 @@ function LandingPage() {
       <section className="bg-secondary/40 py-16 md:py-20">
         <div className="mx-auto max-w-6xl px-4">
           <div className="grid gap-8 md:grid-cols-2 md:items-center">
-            <div>
+            <Reveal>
               <h2 className="text-3xl font-bold tracking-tight text-[#12344D] md:text-4xl">
                 {data.location.title}
               </h2>
@@ -262,10 +309,11 @@ function LandingPage() {
               <div className="mt-8">
                 <CTAButton>Falar com consultor</CTAButton>
               </div>
-            </div>
-            <div
+            </Reveal>
+            <Reveal
+              delay={0.1}
               className="overflow-hidden rounded-2xl border border-border"
-              style={{ boxShadow: "var(--shadow-soft)" }}
+              as="div"
             >
               <iframe
                 title="Mapa"
@@ -274,7 +322,7 @@ function LandingPage() {
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               />
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -282,7 +330,7 @@ function LandingPage() {
       {/* Plantas */}
       <section className="py-16 md:py-20">
         <div className="mx-auto max-w-6xl px-4">
-          <div className="mb-10 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
+          <Reveal className="mb-10 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
             <div>
               <h2 className="text-3xl font-bold tracking-tight text-[#12344D] md:text-4xl">
                 {data.plantas.title}
@@ -290,42 +338,43 @@ function LandingPage() {
               <p className="mt-3 text-muted-foreground">{data.plantas.subtitle}</p>
             </div>
             <Tour3DDialog />
-          </div>
-          <div className="grid gap-6 md:grid-cols-3">
+          </Reveal>
+          <StaggerGroup className="grid gap-6 md:grid-cols-3" stagger={0.12}>
             {data.plantas.items.map((p) => (
-              <div
-                key={p.label}
-                className="overflow-hidden rounded-2xl border border-border bg-white p-4"
-                style={{ boxShadow: "var(--shadow-soft)" }}
-              >
-                <img
-                  src={p.src}
-                  alt={`Planta ${p.label}`}
-                  loading="lazy"
-                  width={1024}
-                  height={1024}
-                  className="mx-auto h-auto w-full max-w-md object-contain"
-                />
-                <div className="mt-4 text-center">
-                  <div className="text-sm font-semibold uppercase tracking-wider text-[#00C2A8]">
-                    {p.label}
+              <StaggerItem key={p.label}>
+                <div
+                  className="h-full overflow-hidden rounded-2xl border border-border bg-white p-4 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_-20px_rgba(18,52,77,0.35)]"
+                  style={{ boxShadow: "var(--shadow-soft)" }}
+                >
+                  <img
+                    src={p.src}
+                    alt={`Planta ${p.label}`}
+                    loading="lazy"
+                    width={1024}
+                    height={1024}
+                    className="mx-auto h-auto w-full max-w-md object-contain"
+                  />
+                  <div className="mt-4 text-center">
+                    <div className="text-sm font-semibold uppercase tracking-wider text-[#00C2A8]">
+                      {p.label}
+                    </div>
+                    <div className="text-lg font-bold text-[#12344D]">{p.desc}</div>
                   </div>
-                  <div className="text-lg font-bold text-[#12344D]">{p.desc}</div>
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGroup>
         </div>
       </section>
 
       {/* FAQ */}
       <section className="bg-secondary/40 py-16 md:py-20">
         <div className="mx-auto max-w-3xl px-4">
-          <div className="mb-10 text-center">
+          <Reveal className="mb-10 text-center">
             <h2 className="text-3xl font-bold tracking-tight text-[#12344D] md:text-4xl">
               {data.faq.title}
             </h2>
-          </div>
+          </Reveal>
           <div className="space-y-3">
             {data.faq.items.map((f, i) => {
               const isOpen = openFaq === i;
@@ -364,7 +413,7 @@ function LandingPage() {
         style={{ background: "var(--gradient-hero)" }}
       >
         <div className="mx-auto grid max-w-5xl gap-10 px-4 md:grid-cols-2 md:items-center">
-          <div className="text-center md:text-left">
+          <Reveal className="text-center md:text-left">
             <h2 className="text-3xl font-bold tracking-tight md:text-5xl">
               {data.finalCta.title}
             </h2>
@@ -372,11 +421,11 @@ function LandingPage() {
             <div className="mt-8 flex justify-center md:justify-start">
               <CTAButton>{data.finalCta.button}</CTAButton>
             </div>
-          </div>
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur">
-            <h3 className="mb-4 text-xl font-bold">Deixe seus dados</h3>
+          </Reveal>
+          <Reveal delay={0.1} className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur">
+            <h3 className="mb-4 text-xl font-bold">{data.finalCta.formTitle}</h3>
             <LeadForm />
-          </div>
+          </Reveal>
         </div>
       </section>
 
