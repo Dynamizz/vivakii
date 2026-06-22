@@ -411,7 +411,7 @@ function LandingPage() {
         style={{ background: "var(--gradient-hero)" }}
       >
         <div className="mx-auto grid max-w-5xl gap-10 px-4 md:grid-cols-2 md:items-center">
-          <div className="text-center md:text-left">
+          <Reveal className="text-center md:text-left">
             <h2 className="text-3xl font-bold tracking-tight md:text-5xl">
               {data.finalCta.title}
             </h2>
@@ -419,11 +419,11 @@ function LandingPage() {
             <div className="mt-8 flex justify-center md:justify-start">
               <CTAButton>{data.finalCta.button}</CTAButton>
             </div>
-          </div>
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur">
-            <h3 className="mb-4 text-xl font-bold">Deixe seus dados</h3>
+          </Reveal>
+          <Reveal delay={0.1} className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur">
+            <h3 className="mb-4 text-xl font-bold">{data.finalCta.formTitle}</h3>
             <LeadForm />
-          </div>
+          </Reveal>
         </div>
       </section>
 
