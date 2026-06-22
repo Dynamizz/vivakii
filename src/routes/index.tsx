@@ -289,7 +289,7 @@ function LandingPage() {
       <section className="bg-secondary/40 py-16 md:py-20">
         <div className="mx-auto max-w-6xl px-4">
           <div className="grid gap-8 md:grid-cols-2 md:items-center">
-            <div>
+            <Reveal>
               <h2 className="text-3xl font-bold tracking-tight text-[#12344D] md:text-4xl">
                 {data.location.title}
               </h2>
