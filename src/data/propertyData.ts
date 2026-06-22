@@ -170,14 +170,17 @@ export const propertyData: PropertyData = {
       },
       {
         q: "Qual a previsão de entrega?",
-        a: "Temos unidades a pronta entrega e lançamentos com entrega prevista entre 2026 e 2030. Fale com nosso consultor no WhatsApp para conferir as opções disponíveis.",
+        a: "Temos unidades a pronta entrega e lançamentos com entrega prevista entre 2026 e 2030. Todo financiamento é feito com Garantia da Caixa Econômica Federal — segurança total e sem surpresas no seu planejamento.",
       },
     ],
   },
   finalCta: {
-    title: "Solicite tabela atualizada e disponibilidade",
-    subtitle: "Atendimento humano e rápido, direto pelo WhatsApp.",
+    title: "Solicite uma Simulação de Financiamento Personalizada",
+    subtitle: "Atendimento humano e rápido, direto pelo WhatsApp. Receba sua simulação em minutos.",
     button: "Receber tabela de preços",
+    formTitle: "Solicite uma Simulação de Financiamento Personalizada",
+    successMessage:
+      "Olá! Acabei de solicitar uma simulação de financiamento personalizada do Vivakii. Pode me enviar a tabela e disponibilidade?",
   },
   whatsapp: {
     phone: "5511920983075",
