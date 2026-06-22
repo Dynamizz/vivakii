@@ -322,7 +322,7 @@ function LandingPage() {
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               />
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
