@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { propertyData, getWhatsAppUrl } from "@/data/propertyData";
 import { LeadForm } from "@/components/LeadForm";
+import { Reveal, StaggerGroup, StaggerItem } from "@/components/Reveal";
 import {
   Dialog,
   DialogContent,
