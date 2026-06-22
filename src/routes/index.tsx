@@ -309,10 +309,11 @@ function LandingPage() {
               <div className="mt-8">
                 <CTAButton>Falar com consultor</CTAButton>
               </div>
-            </div>
-            <div
+            </Reveal>
+            <Reveal
+              delay={0.1}
               className="overflow-hidden rounded-2xl border border-border"
-              style={{ boxShadow: "var(--shadow-soft)" }}
+              as="div"
             >
               <iframe
                 title="Mapa"
