@@ -88,9 +88,40 @@ export const propertyData: PropertyData = {
       { title: "Lazer completo", desc: "Piscina, salão de festas, grill e pomar." },
     ],
   },
+  affordability: {
+    eyebrow: "Cabe no seu bolso",
+    title: "O sonho do apartamento próprio com condições que cabem no seu bolso",
+    subtitle: "Sem precisar de uma entrada gigantesca para começar.",
+    items: [
+      {
+        title: "Entrada Facilitada",
+        desc: "Parcelamento flexível direto com a construtora. Você organiza a entrada no seu ritmo, sem aperto no orçamento.",
+      },
+      {
+        title: "Uso do FGTS",
+        desc: "Seu saldo de FGTS pode ser usado na entrada, na amortização ou para reduzir as parcelas do financiamento.",
+      },
+      {
+        title: "Juros Baixos do Minha Casa Minha Vida",
+        desc: "Acesso às menores taxas do mercado pelo programa MCMV, com subsídios e condições especiais da Caixa.",
+      },
+    ],
+  },
+  bureaucracy: {
+    eyebrow: "Sem burocracia",
+    title: "Aprovação de Crédito sem Complicações",
+    body: "Fazemos toda a assessoria de crédito gratuitamente, inclusive para Autônomos, PJs e Profissionais Liberais. Sem burocracia, sem fila e sem complicação — você cuida do seu sonho, a gente cuida do papel.",
+    bullets: [
+      "Análise gratuita de perfil",
+      "Atende autônomos, PJ e liberais",
+      "Documentação simplificada",
+    ],
+  },
   gallery: {
-    title: "Conheça o empreendimento",
-    subtitle: "Imagens ilustrativas do projeto.",
+    eyebrow: "Lazer completo",
+    title: "Sua casa não termina na porta do apartamento",
+    subtitle:
+      "A área de lazer foi pensada para você viver mais — piscina, salão de festas, espaço gourmet e pomar ampliam (e muito) o seu metro quadrado.",
     images: [
       { src: fachadaAsset.url, alt: "Fachada do empreendimento Vivakii" },
       { src: piscinaAsset.url, alt: "Piscina com espreguiçadeiras" },
