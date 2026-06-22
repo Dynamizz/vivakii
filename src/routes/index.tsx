@@ -329,7 +329,7 @@ function LandingPage() {
       {/* Plantas */}
       <section className="py-16 md:py-20">
         <div className="mx-auto max-w-6xl px-4">
-          <div className="mb-10 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
+          <Reveal className="mb-10 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
             <div>
               <h2 className="text-3xl font-bold tracking-tight text-[#12344D] md:text-4xl">
                 {data.plantas.title}
@@ -337,42 +337,43 @@ function LandingPage() {
               <p className="mt-3 text-muted-foreground">{data.plantas.subtitle}</p>
             </div>
             <Tour3DDialog />
-          </div>
-          <div className="grid gap-6 md:grid-cols-3">
+          </Reveal>
+          <StaggerGroup className="grid gap-6 md:grid-cols-3" stagger={0.12}>
             {data.plantas.items.map((p) => (
-              <div
-                key={p.label}
-                className="overflow-hidden rounded-2xl border border-border bg-white p-4"
-                style={{ boxShadow: "var(--shadow-soft)" }}
-              >
-                <img
-                  src={p.src}
-                  alt={`Planta ${p.label}`}
-                  loading="lazy"
-                  width={1024}
-                  height={1024}
-                  className="mx-auto h-auto w-full max-w-md object-contain"
-                />
-                <div className="mt-4 text-center">
-                  <div className="text-sm font-semibold uppercase tracking-wider text-[#00C2A8]">
-                    {p.label}
+              <StaggerItem key={p.label}>
+                <div
+                  className="h-full overflow-hidden rounded-2xl border border-border bg-white p-4 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_-20px_rgba(18,52,77,0.35)]"
+                  style={{ boxShadow: "var(--shadow-soft)" }}
+                >
+                  <img
+                    src={p.src}
+                    alt={`Planta ${p.label}`}
+                    loading="lazy"
+                    width={1024}
+                    height={1024}
+                    className="mx-auto h-auto w-full max-w-md object-contain"
+                  />
+                  <div className="mt-4 text-center">
+                    <div className="text-sm font-semibold uppercase tracking-wider text-[#00C2A8]">
+                      {p.label}
+                    </div>
+                    <div className="text-lg font-bold text-[#12344D]">{p.desc}</div>
                   </div>
-                  <div className="text-lg font-bold text-[#12344D]">{p.desc}</div>
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGroup>
         </div>
       </section>
 
       {/* FAQ */}
       <section className="bg-secondary/40 py-16 md:py-20">
         <div className="mx-auto max-w-3xl px-4">
-          <div className="mb-10 text-center">
+          <Reveal className="mb-10 text-center">
             <h2 className="text-3xl font-bold tracking-tight text-[#12344D] md:text-4xl">
               {data.faq.title}
             </h2>
-          </div>
+          </Reveal>
           <div className="space-y-3">
             {data.faq.items.map((f, i) => {
               const isOpen = openFaq === i;
