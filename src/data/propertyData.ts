@@ -28,7 +28,9 @@ export interface PropertyData {
     stats: { value: string; label: string }[];
   };
   highlights: { title: string; subtitle: string; items: Highlight[] };
-  gallery: { title: string; subtitle: string; images: GalleryImage[] };
+  affordability: { eyebrow: string; title: string; subtitle: string; items: Highlight[] };
+  bureaucracy: { eyebrow: string; title: string; body: string; bullets: string[] };
+  gallery: { eyebrow: string; title: string; subtitle: string; images: GalleryImage[] };
   location: {
     title: string;
     subtitle: string;
@@ -37,7 +39,7 @@ export interface PropertyData {
   };
   plantas: { title: string; subtitle: string; items: Planta[]; tour3dUrl: string };
   faq: { title: string; items: Faq[] };
-  finalCta: { title: string; subtitle: string; button: string };
+  finalCta: { title: string; subtitle: string; button: string; formTitle: string; successMessage: string };
   whatsapp: { phone: string; message: string };
   webhookUrl: string;
   seo: {
