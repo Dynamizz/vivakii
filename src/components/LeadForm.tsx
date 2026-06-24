@@ -38,16 +38,19 @@ export function LeadForm() {
 
   const onSubmit = async (values: LeadFormValues) => {
     try {
-      await fetch(propertyData.webhookUrl, {
+      const res = await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        mode: "no-cors",
         body: JSON.stringify({
           ...values,
           source: `landing-${propertyData.brand.name.toLowerCase()}`,
           timestamp: new Date().toISOString(),
         }),
       });
+
+      if (!res.ok) {
+        throw new Error(`Request failed: ${res.status}`);
+      }
 
       toast.success("Simulação solicitada!", {
         description: "Clique no botão abaixo para falar agora com nosso consultor no WhatsApp.",
