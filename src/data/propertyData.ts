@@ -187,8 +187,11 @@ export const propertyData: PropertyData = {
     message:
       "Olá! Quero a tabela de preços e disponibilidade do empreendimento Vivakii na Freguesia do Ó.",
   },
-  // Plug your automation endpoint here (n8n, Make, Zapier, FastAPI, etc.)
-  webhookUrl: "https://webhook.site/your-endpoint-id",
+  // Lead submissions are posted to the same-origin /api/leads route, which
+  // validates input server-side and forwards to a private webhook configured
+  // via the LEADS_WEBHOOK_URL server secret. Do NOT put third-party webhook
+  // URLs here — they would be exposed in the client bundle.
+  webhookUrl: "/api/leads",
   seo: {
     title: "Vivakii — Apartamentos na Freguesia do Ó | São Paulo",
     description:
